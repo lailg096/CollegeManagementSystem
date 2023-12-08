@@ -1,19 +1,28 @@
 package org.ghoujal.dto;
 
+import lombok.*;
+
+@Setter
+@Getter
+@ToString
+
 public class Department {
-
-    public Department(String str) {
-
-    }
-
     private String id;
-    private static int nextId;
-
+    private static int nextId = 1;
     private String departmentName;
 
-    public String toString(){
 
-        return null;
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+        this.id = String.format("D%03d", nextId++);
+
+
     }
+
+//    public String toString(){
+//
+//
+//    }
 }
 

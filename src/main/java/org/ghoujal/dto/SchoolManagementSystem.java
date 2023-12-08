@@ -1,6 +1,18 @@
 package org.ghoujal.dto;
 
+import lombok.*;
+
+import java.util.Scanner;
+
+@Setter
+@Getter
 public class SchoolManagementSystem {
+
+    private static final int MAX_NUM_OF_COURSES = 30;
+    private static final int MAX_NUM_OF_DEPARTMENTS = 5;
+    private static final int MAX_NUM_OF_STUDENTS = 200;
+    private static final int MAX_NUM_OF_TEACHERS = 20;
+    private int amountOfDepartments = 0;
 
     public SchoolManagementSystem(String str) {
 
@@ -19,6 +31,11 @@ public class SchoolManagementSystem {
 
     }
     public void addDepartment(String str){
+        if (amountOfDepartments <= MAX_NUM_OF_DEPARTMENTS){
+
+
+        }
+
 
     }
 
