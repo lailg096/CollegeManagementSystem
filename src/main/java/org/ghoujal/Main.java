@@ -16,6 +16,7 @@ public class Main {
         Department d2 = new Department("Social Science");
         System.out.println(d2);
 
+
         s1.addDepartment("Arts");
         System.out.println(s1);
 

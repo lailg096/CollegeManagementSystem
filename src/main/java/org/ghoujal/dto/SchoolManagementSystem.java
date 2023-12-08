@@ -37,7 +37,6 @@ public class SchoolManagementSystem {
         if (amountOfDepartments <= MAX_NUM_OF_DEPARTMENTS){
             departments[amountOfDepartments] = new Department(departmentName);
             amountOfDepartments++;
-
         }
         else {
             System.out.println("Maximum number of departments reached");
