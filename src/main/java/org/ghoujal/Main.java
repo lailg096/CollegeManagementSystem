@@ -1,6 +1,8 @@
 package org.ghoujal;
 
 
+import lombok.*;
+
 import org.ghoujal.dto.Department;
 import org.ghoujal.dto.SchoolManagementSystem;
 
@@ -11,14 +13,12 @@ public class Main {
 
 
         SchoolManagementSystem s1 = new SchoolManagementSystem();
-        Department d1 = new Department("Computer Science");
-        System.out.println(d1);
-        Department d2 = new Department("Social Science");
-        System.out.println(d2);
-
-
-        s1.addDepartment("Arts");
         System.out.println(s1);
+        s1.addDepartment("Compsci");
+        System.out.println(s1);
+        s1.addCourse("Intro to prog", 3, "Compsci");
+        System.out.println(s1);
+
 
 
 

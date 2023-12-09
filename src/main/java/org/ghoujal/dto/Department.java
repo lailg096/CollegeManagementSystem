@@ -6,11 +6,11 @@ import lombok.*;
 @Getter
 @ToString
 
+
 public class Department {
     private String id;
     private static int nextId = 1;
     private String departmentName;
-
 
 
     public Department(String departmentName) {
@@ -20,9 +20,5 @@ public class Department {
 
     }
 
-//    public String toString(){
-//
-//
-//    }
 }
 
