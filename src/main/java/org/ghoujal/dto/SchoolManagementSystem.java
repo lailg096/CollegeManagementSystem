@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 @Setter
 @Getter
+@ToString
 
 public class SchoolManagementSystem {
 
@@ -14,6 +15,8 @@ public class SchoolManagementSystem {
     private static final int MAX_NUM_OF_DEPARTMENTS = 5;
     private static final int MAX_NUM_OF_STUDENTS = 200;
     private static final int MAX_NUM_OF_TEACHERS = 20;
+    private int amountOfTeachers = 0;
+    private int amountOfStudents = 0;
     private int amountOfDepartments = 0;
     private int amountOfCourses = 0;
     private Department[] departments;
@@ -27,9 +30,14 @@ public class SchoolManagementSystem {
 
     }
 
-    public Department findDepartment(String str){
-
-        return null;
+    public Department findDepartment(String departmentId){
+        for (Department department : departments){
+            if (department.getId() == departmentId){
+                return department;
+            }
+            return null;
+        }
+        return findDepartment(departmentId);
     }
 
     public void printTeachers(){
@@ -42,6 +50,7 @@ public class SchoolManagementSystem {
     public void addDepartment(String departmentName){
         if (amountOfDepartments <= MAX_NUM_OF_DEPARTMENTS){
             departments[amountOfDepartments] = new Department(departmentName);
+            System.out.println(departments[amountOfDepartments] + " added successfully\n");
             amountOfDepartments++;
         }
         else {
@@ -62,7 +71,7 @@ public class SchoolManagementSystem {
 
     public void addCourse(String courseName, double credit, String departmentName) {
         if (amountOfCourses <= MAX_NUM_OF_COURSES){
-            courses[amountOfCourses] = new Course(courseName, credit, new Department(departmentName));
+            courses[amountOfCourses] = new Course(courseName, credit, findDepartment(departmentName));
             amountOfCourses++;
         }
     }
@@ -71,7 +80,10 @@ public class SchoolManagementSystem {
 
     }
 
-    public void addTeacher(String str, String str2, String str3){
+    public void addTeacher(String firstName, String lastName, String departmentName){
+        if (amountOfTeachers <= MAX_NUM_OF_TEACHERS){
+
+        }
 
     }
     public Course findCourse(String str){
@@ -80,6 +92,13 @@ public class SchoolManagementSystem {
     }
 
     public void printDepartments(){
+        String departStr = "";
+        for (Department department : departments){
+            if (department != null){
+                departStr += department + "\n";
+            }
+        }
+        System.out.println(departStr);
 
     }
 
@@ -92,24 +111,20 @@ public class SchoolManagementSystem {
         return null;
     }
 
-    @Override
-    public String toString(){
-        String departStr = "{";
-//        for (Department department : departments){
-//            if (department != null){
-//                departStr += department;
+//    @Override
+//    public String toString(){
+//
+//
+//        String finalStr = departStr + "";
+//
+//        String courseStr = "{";
+//        for (Course course : courses){
+//            if (course != null){
+//                courseStr += course;
 //            }
 //        }
-        String finalStr = departStr + "}";
-
-        String courseStr = "{";
-        for (Course course : courses){
-            if (course != null){
-                courseStr += course;
-            }
-        }
-        finalStr = courseStr + "}";
-        return finalStr;
-    }
+//        finalStr = courseStr + "}";
+//        return finalStr;
+//    }
 
 }
