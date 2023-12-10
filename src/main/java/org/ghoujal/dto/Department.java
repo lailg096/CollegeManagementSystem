@@ -4,9 +4,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@ToString
-
-
 public class Department {
     private String id;
     private static int nextId = 1;
@@ -21,7 +18,7 @@ public class Department {
     @Override
     public String toString() {
         return "Department {" +
-                "id= \"" + id + '\"' +
+                "id= " + id +
                 ", Department Name= " + "\"" + departmentName + "\"" +
                 '}';
     }

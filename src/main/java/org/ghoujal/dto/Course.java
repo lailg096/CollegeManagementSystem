@@ -1,9 +1,13 @@
 package org.ghoujal.dto;
 
-import lombok.ToString;
+import lombok.*;
 
-@ToString
+import java.util.Arrays;
+
+@Getter
+@Setter
 public class Course {
+    private static final int MAX_NUM_OF_STUDENTS_PER_COURSE = 5;
     private String id;
     private String courseName;
     private double credit;
@@ -20,10 +24,29 @@ public class Course {
         this.credit = credit;
         this.department = department;
         this.id = String.format("C%03d", nextId++);
+        this.students = new Student[MAX_NUM_OF_STUDENTS_PER_COURSE];
     }
 
-//    public String toString(){
-//
-//        return null;
-//    }
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id='" + id + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credit=" + credit +
+                ", teacher=" + teacher +
+                ", department=" + department.getDepartmentName() +
+                ", students=" + studentsToString() +
+                '}';
+    }
+
+    public String studentsToString(){
+        String studentStr = "";
+        for (Student student : students ){
+            if (student != null){
+                studentStr += student + "\n";
+            }
+        }
+        return String.format(studentStr);
+    }
+
 }

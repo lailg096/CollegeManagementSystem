@@ -1,8 +1,9 @@
 package org.ghoujal.dto;
 
-public class Teacher {
+import lombok.*;
 
-    private static final int MAX_NUM_OF_STUDENTS_PER_COURSE = 5;
+@ToString
+public class Teacher {
     private String lastName;
     private String firstName;
     private Department department;
@@ -16,10 +17,10 @@ public class Teacher {
         this.id = String.format("T%03d", nextId++);
     }
 
-    public String toString(){
-
-        return null;
-    }
+//    public String toString(){
+//
+//        return null;
+//    }
 
 
 }

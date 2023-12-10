@@ -16,11 +16,12 @@ public class Main {
 
         s1.addDepartment("Compsci");
         s1.printDepartments();
-        s1.addCourse("Intro to prog", 3, "D001");
-        s1.printDepartments();
-        s1.addDepartment("Arts");
-        s1.printDepartments();
-        s1.findDepartment("D003");
+        s1.addCourse("Intro to prog", 3, "D009");
+        s1.addStudent("Laila", "Ghoujal", "D001");
+        s1.findCourse("C001");
+        s1.findDepartment("D001");
+
+
 
 
 

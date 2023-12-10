@@ -21,18 +21,18 @@ public class SchoolManagementSystem {
     private int amountOfCourses = 0;
     private Department[] departments;
     private Course[] courses;
+    private Student[] students;
 
     public SchoolManagementSystem() {
         this.departments = new Department[MAX_NUM_OF_DEPARTMENTS];
         this.courses = new Course[MAX_NUM_OF_COURSES];
-
-
+        this.students = new Student[MAX_NUM_OF_STUDENTS];
 
     }
 
     public Department findDepartment(String departmentId){
         for (Department department : departments){
-            if (department.getId() == departmentId){
+            if (department.getId().equals(departmentId)){
                 return department;
             }
             return null;
@@ -69,11 +69,21 @@ public class SchoolManagementSystem {
         return null;
     }
 
-    public void addCourse(String courseName, double credit, String departmentName) {
+    public void addCourse(String courseName, double credit, String departmentId) {
         if (amountOfCourses <= MAX_NUM_OF_COURSES){
-            courses[amountOfCourses] = new Course(courseName, credit, findDepartment(departmentName));
+            try{
+                courses[amountOfCourses] = new Course(courseName, credit, findDepartment(departmentId));
+                System.out.println(courses[amountOfCourses] + "added successfully\n");
+            }
+            catch (NullPointerException idDoesNotExist){
+                System.out.printf("Sorry, it doesn't seem like department %s exists\n", departmentId);
+            }
             amountOfCourses++;
         }
+        else {
+            System.out.println("Sorry, maximum number of courses has been reached");
+        }
+
     }
 
     public void registerCourse(String str, String str1) {
@@ -86,9 +96,14 @@ public class SchoolManagementSystem {
         }
 
     }
-    public Course findCourse(String str){
-
-        return null;
+    public Course findCourse(String courseId){
+        for (Course course : courses){
+            if (course.getId().equals(courseId)){
+                return course;
+            }
+            return null;
+        }
+        return findCourse((courseId));
     }
 
     public void printDepartments(){
@@ -102,29 +117,15 @@ public class SchoolManagementSystem {
 
     }
 
-    public void addStudent(String firstName, String lastName, String departmentName){
-
+    public void addStudent(String firstName, String lastName, String departmentId){
+            if (amountOfStudents < MAX_NUM_OF_STUDENTS){
+                students[amountOfStudents] = new Student(firstName, lastName, findDepartment(departmentId));
+                System.out.println(students[amountOfStudents] + "has been added successfully");
+            }
     }
 
     public Teacher findTeacher(String str){
 
         return null;
     }
-
-//    @Override
-//    public String toString(){
-//
-//
-//        String finalStr = departStr + "";
-//
-//        String courseStr = "{";
-//        for (Course course : courses){
-//            if (course != null){
-//                courseStr += course;
-//            }
-//        }
-//        finalStr = courseStr + "}";
-//        return finalStr;
-//    }
-
 }
