@@ -5,6 +5,8 @@ import lombok.*;
 import java.util.Arrays;
 
 @ToString
+@Setter
+@Getter
 public class Student {
     private static final int MAX_NUM_OF_COURSES_PER_STUDENT = 5;
     private String id;
@@ -12,8 +14,6 @@ public class Student {
     private String lastName;
     private int courseNum = 0;
     private Course[] courses;
-
-
     private static int nextId = 1;
     private Department department;
 

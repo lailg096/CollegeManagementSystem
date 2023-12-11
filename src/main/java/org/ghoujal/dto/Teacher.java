@@ -2,25 +2,30 @@ package org.ghoujal.dto;
 
 import lombok.*;
 
-@ToString
+
+@Setter
+@Getter
 public class Teacher {
-    private String lastName;
-    private String firstName;
-    private Department department;
     private String id;
+    private String firstName;
+    private String lastName;
+    private Department department;
     private static int nextId = 1;
 
-    public Teacher(String lastName, String firstName, Department department) {
-        this.lastName = lastName;
+    public Teacher(String firstName, String lastName, Department department) {
         this.firstName = firstName;
+        this.lastName = lastName;
         this.department = department;
         this.id = String.format("T%03d", nextId++);
     }
 
-//    public String toString(){
-//
-//        return null;
-//    }
-
-
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department.getDepartmentName() +
+                '}';
+    }
 }

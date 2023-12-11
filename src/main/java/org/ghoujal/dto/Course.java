@@ -25,6 +25,8 @@ public class Course {
         this.department = department;
         this.id = String.format("C%03d", nextId++);
         this.students = new Student[MAX_NUM_OF_STUDENTS_PER_COURSE];
+        this.teacher = null;
+
     }
 
     @Override
@@ -48,5 +50,6 @@ public class Course {
         }
         return String.format(studentStr);
     }
+
 
 }
