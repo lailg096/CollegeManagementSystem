@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.util.Arrays;
 
-@ToString
+
 @Setter
 @Getter
 public class Student {
@@ -25,6 +25,15 @@ public class Student {
         this.courses = new Course[MAX_NUM_OF_COURSES_PER_STUDENT];
     }
 
+    public void addCourse(Course c){
+        for (Course studentCourse : courses){
+            if (studentCourse != null && c.getId() == studentCourse.getId()){
+                return;
+            }
+        }
+        courses[courseNum] = c;
+        courseNum++;
+    }
     @Override
     public String toString() {
         return "Student{" +
@@ -41,10 +50,10 @@ public class Student {
         String courseStr = "";
         for (Course course : courses ){
             if (course != null){
-                courseStr += course + "\n";
+                courseStr += course.getId() + " - " + course.getCourseName() + "\n";
             }
         }
-        return String.format(courseStr);
+        return courseStr;
     }
 
 }

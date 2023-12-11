@@ -21,6 +21,7 @@ public class Course {
 
     public Course(String courseName, double credit, Department department) {
         this.courseName = courseName;
+        this.studentNum = 0;
         this.credit = credit;
         this.department = department;
         this.id = String.format("C%03d", nextId++);
@@ -35,20 +36,39 @@ public class Course {
                 "id='" + id + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", credit=" + credit +
-                ", teacher=" + teacher +
-                ", department=" + department.getDepartmentName() +
+                //", teacher=" + teacherToString() +
+                //", department=" + department.getDepartmentName() +
                 ", students=" + studentsToString() +
                 '}';
     }
+
+    public void addStudent(Student s){
+        for (Student aStudent : students){
+            if (aStudent != null && aStudent.getId() == s.getId()){
+                return;
+            }
+        }
+        students[studentNum] = s;
+        studentNum++;
+    }
+
 
     public String studentsToString(){
         String studentStr = "";
         for (Student student : students ){
             if (student != null){
-                studentStr += student + "\n";
+                studentStr += student.getId() + "(" + student.getFirstName() + " " + student.getLastName()+ ")\n";
             }
         }
-        return String.format(studentStr);
+        return studentStr;
+    }
+
+    public String teacherToString(){
+        String teacherStr = "";
+        if (teacher != null){
+            teacherStr += teacher.getFirstName() + " " + teacher.getLastName();
+        }
+       return teacherStr;
     }
 
 

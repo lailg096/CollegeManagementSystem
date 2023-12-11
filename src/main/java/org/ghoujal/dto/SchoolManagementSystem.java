@@ -38,9 +38,9 @@ public class SchoolManagementSystem {
             if (department.getId().equals(departmentId)){
                 return department;
             }
-            return null;
         }
-        return findDepartment(departmentId);
+
+        return null;
     }
 
     public void printTeachers(){
@@ -90,9 +90,10 @@ public class SchoolManagementSystem {
             if (student.getId().equals(studentId)){
                 return student;
             }
-            return null;
+
         }
-        return findStudent((studentId));
+
+        return null;
     }
 
     public void addCourse(String courseName, double credit, String departmentId) {
@@ -113,20 +114,75 @@ public class SchoolManagementSystem {
     }
 
     public void registerCourse(String studentId, String courseId) {
-        if (findStudent(studentId) != null && findCourse(courseId) != null){
-           findStudent(studentId).setCourses(courses);
-           findCourse(courseId).setStudents(students);
-            System.out.println("Student" + findStudent(studentId) + " is registered in " + findCourse(courseId).getId());
-            System.out.println("Course" + findCourse(courseId).getId()
-            + " was registered by student " + findStudent(studentId));
-        }
-        else if (findCourse(courseId) == null){
-            System.out.printf("Sorry course %s doesn't seem to exist", courseId);
-        }
-        else if (findStudent(studentId) == null){
-            System.out.printf("Sorry student %s doesn't seem to exist", studentId);
+
+        Course c =  findCourse(courseId);
+        if(c == null)
+        {
+            System.out.println("Can't find course " + courseId + ", ignoring registration");
+
+
         }
 
+
+        Student s =  findStudent(studentId);
+        if(s == null)
+        {
+            System.out.println("Can't find student " + studentId + ", ignoring registration");
+            return;
+        }
+
+
+        // is the course full?
+        int tmpCountOfStudents = 0;
+        for (Student tmpS: c.getStudents()){
+            if (tmpS != null){
+                tmpCountOfStudents++;
+            }
+
+        }
+        if(tmpCountOfStudents >= 5){
+            System.out.println("Course " + courseId + " already full, ignoring registration");
+            return;
+        }
+
+
+
+        // is student maxed out number of registrations
+        int tmpCountOfRegisteredCourses = 0;
+        for (Course tmpC: s.getCourses()){
+            if (tmpC != null){
+                tmpCountOfRegisteredCourses++;
+            }
+
+        }
+        if(tmpCountOfRegisteredCourses >= 5){
+            System.out.println("Student " + studentId + " already registred max number of courses, ignoring registration");
+            return;
+        }
+
+        // finally register a student for the course
+        s.addCourse(c);
+        c.addStudent(s);
+
+        System.out.println("Successfully registered " + studentId + " for course " + courseId);
+
+
+//        if (findStudent(studentId) != null && findCourse(courseId) != null){
+//
+//            // is course full?
+//
+//           findStudent(studentId).setCourses(findCourse(courseId));
+//           findCourse(courseId).setStudents(new Student[]{findStudent(studentId)});
+//            System.out.println("Student" + findStudent(studentId) + " is registered in " + findCourse(courseId).getId());
+//            System.out.println("Course" + findCourse(courseId).getId()
+//            + " was registered by student " + findStudent(studentId));
+//        }
+//        else if (findCourse(courseId) == null){
+//            System.out.printf("Sorry course %s doesn't seem to exist", courseId);
+//        }
+//        else if (findStudent(studentId) == null){
+//            System.out.printf("Sorry student %s doesn't seem to exist", studentId);
+//        }
 
     }
 
@@ -151,9 +207,9 @@ public class SchoolManagementSystem {
             if (course.getId().equals(courseId)){
                 return course;
             }
-            return null;
+
         }
-        return findCourse((courseId));
+        return null;
     }
 
     public void printDepartments(){
@@ -170,7 +226,9 @@ public class SchoolManagementSystem {
             if (amountOfStudents < MAX_NUM_OF_STUDENTS){
                 students[amountOfStudents] = new Student(firstName, lastName, findDepartment(departmentId));
                 System.out.println(students[amountOfStudents] + " has been added successfully\n");
+                amountOfStudents++;
             }
+
     }
 
     public Teacher findTeacher(String teacherId){
@@ -178,9 +236,9 @@ public class SchoolManagementSystem {
             if (teacher.getId().equals(teacherId)){
                 return teacher;
             }
-            return null;
+
         }
-        return findTeacher((teacherId));
+        return null;
     }
 
     public void printCourses(){
