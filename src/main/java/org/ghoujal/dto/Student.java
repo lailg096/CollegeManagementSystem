@@ -2,7 +2,7 @@ package org.ghoujal.dto;
 
 import lombok.*;
 
-import java.util.Arrays;
+import java.util.Objects;
 
 
 @Setter
@@ -17,6 +17,12 @@ public class Student {
     private static int nextId = 1;
     private Department department;
 
+    /**
+     * Student constructor
+     * @param firstName first name of student
+     * @param lastName last name of student
+     * @param department department student is in
+     */
     public Student(String firstName, String lastName, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,15 +31,24 @@ public class Student {
         this.courses = new Course[MAX_NUM_OF_COURSES_PER_STUDENT];
     }
 
+    /**
+     * creates courses inside each student
+     * @param c course
+     */
     public void addCourse(Course c){
         for (Course studentCourse : courses){
-            if (studentCourse != null && c.getId() == studentCourse.getId()){
+            if (studentCourse != null && Objects.equals(c.getId(), studentCourse.getId())){
                 return;
             }
         }
         courses[courseNum] = c;
         courseNum++;
     }
+
+    /**
+     * give string of only relevant information of student
+     * @return string of student
+     */
     @Override
     public String toString() {
         return "Student{" +
@@ -46,6 +61,10 @@ public class Student {
                 '}';
     }
 
+    /**
+     * only give back relevant information of courses that are inside student
+     * @return
+     */
     public String courseToString(){
         String courseStr = "";
         for (Course course : courses ){
@@ -55,5 +74,4 @@ public class Student {
         }
         return courseStr;
     }
-
 }

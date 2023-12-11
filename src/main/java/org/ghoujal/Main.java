@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        SchoolManagementSystem s1 = new SchoolManagementSystem();
+        SchoolManagementSystem s1 = new SchoolManagementSystem("Vanier");
 
         s1.addDepartment("Compsci");
         s1.printDepartments();
@@ -42,10 +42,10 @@ public class Main {
         s1.printStudents();
         s1.addTeacher("Yi", "Wang", "D001");
         s1.addTeacher("Andre", "Cholmsky", "D001");
+
         s1.printTeachers();
         s1.modifyCourseTeacher("T001", "C001");
-
-//        s1.printCourses();
+        s1.printCourses();
         s1.printCourses();
         s1.registerCourse("S001", "C001");
         s1.printCourses();
@@ -63,6 +63,7 @@ public class Main {
         s1.registerCourse("S001", "C005");
         s1.registerCourse("S001", "C006");
         s1.printCourses();
+
 
 
 

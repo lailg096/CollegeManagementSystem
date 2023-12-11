@@ -18,7 +18,12 @@ public class Course {
     private int studentNum;
 
 
-
+    /**
+     * Course constructor
+     * @param courseName
+     * @param credit
+     * @param department
+     */
     public Course(String courseName, double credit, Department department) {
         this.courseName = courseName;
         this.studentNum = 0;
@@ -30,21 +35,29 @@ public class Course {
 
     }
 
+    /**
+     * manual toString that uses other toString methods
+     * @return String of desired information in course
+     */
     @Override
     public String toString() {
         return "Course{" +
                 "id='" + id + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", credit=" + credit +
-                //", teacher=" + teacherToString() +
-                //", department=" + department.getDepartmentName() +
+                ", teacher=" + teacherToString() +
+                ", department=" + department.getDepartmentName() +
                 ", students=" + studentsToString() +
                 '}';
     }
 
+    /**
+     * adds creates a course inside the student
+     * @param s
+     */
     public void addStudent(Student s){
-        for (Student aStudent : students){
-            if (aStudent != null && aStudent.getId() == s.getId()){
+        for (Student student : students){
+            if (student != null && student.getId() == s.getId()){
                 return;
             }
         }
@@ -52,7 +65,10 @@ public class Course {
         studentNum++;
     }
 
-
+    /**
+     * manual toString method to only give desired information from students in course
+     * @return
+     */
     public String studentsToString(){
         String studentStr = "";
         for (Student student : students ){
@@ -63,6 +79,10 @@ public class Course {
         return studentStr;
     }
 
+    /**
+     * manual toString method to only give desired information from teachers in course
+     * @return
+     */
     public String teacherToString(){
         String teacherStr = "";
         if (teacher != null){
@@ -70,6 +90,4 @@ public class Course {
         }
        return teacherStr;
     }
-
-
 }
